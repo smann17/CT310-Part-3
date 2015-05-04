@@ -1,0 +1,5 @@
+scat, test123, blue
+gtierbiter, password2, red
+admin, password, yellow
+smann17, rams, green
+nickzeus, state, orange
