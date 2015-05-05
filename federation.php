@@ -18,12 +18,12 @@
 
 <script type="text/javascript">
 	var request = new XMLHttpRequest();
-	var url = "./purpose.php";
+	var url = "http://www.cs.colostate.edu/~ct310/yr2015sp/project/roster.php?key=WQT3xKmVV7" ;
 	
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
 			var results = JSON.parse(request.responseText);
-			alert(request.responseText);
+			//alert(request.responseText);
 			parseResults(results);
 		}else if(request.readyState == 4 && request.status != 200){
 			document.getElementById("federation_display").innerHTML = "<p>Error retrieving partner sites</p>";
@@ -40,13 +40,13 @@
 		//
 		var out = "";
 		var i;
-		alert(arr.length);
+		//alert(arr.length);
 		for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
-			out += '<a href="' + arr[i].purpose + '">' + arr[i].purpose + '</a>';
-			if(i % 3 == 0){
-				out += '<br>';
-			}
+			out += '<a href="' + arr[i].url + '" title = "test">' + arr[i].name + '</a>' +'<br>';
+		//	if(i % 3 == 0){
+			//	out += '<br>';
+		//	}
 		}
 		document.getElementById("federation_display").innerHTML = out;
 	}
