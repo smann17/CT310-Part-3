@@ -38,6 +38,7 @@
 				<li><a id="home-nav" href="index.php">Home</a></li>
 				<li><a id="search-page" href="search.php">Search Page</a></li>
 				<li><a id="Profile" href="myProfile.php">My Profile</a></li>
+				<li><a id="Federation" href="federation.php">Federation Sites</a></li>
 				
 			</ul>
 		</nav>
