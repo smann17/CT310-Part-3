@@ -18,7 +18,7 @@ function getPurpose(vurl){
 	}
 	prequest.timeout = 5000;
 	prequest.ontimeout = function() {
-		return "Error :: Time Out";
+		alert("Error :: Time Out");
 	}
 	prequest.open("GET", newurl, true);
 	//request.setRequestHeader("Access-Control-Allow-Origin", "*");
@@ -28,9 +28,9 @@ function getPurpose(vurl){
 }
 
 function parseResults(arr){
-		//for(i = 0; i < arr.length; i++){
-			// handle if a single partner site is down
-			return arr[0].purpose;
-		//}
-		
+	if(Array.isArray(arr)){
+		return arr[0].purpose;
+	}else{
+		return arr.purpose;
 	}
+}
