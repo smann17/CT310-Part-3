@@ -1,34 +1,33 @@
 // fieldID to insert into: "purpose_text"
 
-function getPurpose(url){
-	var request = new XMLHttpRequest();
-	newurl = url.concat("/purpose.php");
+function getPurpose(vurl){
+	var prequest = new XMLHttpRequest();
+	newurl = vurl.concat("/purpose.php");
 	//newurl = "purpose.php"
 	//alert(url);
-	request.onreadystatechange = function(){
-		if(request.readyState == 4 && request.status == 200){
-			var results = JSON.parse(request.responseText);
+	prequest.onreadystatechange = function(){
+		if(prequest.readyState == 4 && prequest.status == 200){
+			var results = JSON.parse(prequest.responseText);
 			//alert(request.responseText);
 			return parseResults(results);
-		}else if(request.readyState == 4 && request.status != 200){
-			return "Error retrieving partner information";
-		}else{
-			return "It really doesn't work";
+		}else if(prequest.readyState == 4 && prequest.status != 200){
+			alert("Error retrieving partner information");
+		}else if(prequest.status == 404){
+			alert("It really doesn't work");
 		}
 	}
-	request.timeout = 5000;
-	request.ontimeout = function() {
+	prequest.timeout = 5000;
+	prequest.ontimeout = function() {
 		return "Error :: Time Out";
 	}
-	request.open("GET", newurl, true);
+	prequest.open("GET", newurl, true);
 	//request.setRequestHeader("Access-Control-Allow-Origin", "*");
-	request.send();
+	prequest.send();
 	
 	
 }
 
 function parseResults(arr){
-		var i;
 		//for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
 			return arr[0].purpose;

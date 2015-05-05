@@ -7,7 +7,7 @@
 	require_once("user.php");
 	$util = new util();
 ?>
-<script type="text/javascript" src = "./get_purpose.js"></script>
+<script type="text/javascript" src="./get_purpose.js"></script>
 <div class="white"></div>
 <div class="leftContent" style= "color :white;">
 	<p style="font-size:20px;">Federation of Social Networking Sites</p><br>
