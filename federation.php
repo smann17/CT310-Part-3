@@ -7,7 +7,7 @@
 	require_once("user.php");
 	$util = new util();
 ?>
-
+<script type="text/javascript" src = "./get_purpose.js"></script>
 <div class="white"></div>
 <div class="leftContent" style= "color :white;">
 	<p style="font-size:20px;">Federation of Social Networking Sites</p><br>
@@ -43,7 +43,7 @@
 		//alert(arr.length);
 		for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
-			out += '<a href="' + arr[i].url + '" title = "test">' + arr[i].name + '</a>' +'<br>';
+			out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>' +'<br>';
 		//	if(i % 3 == 0){
 			//	out += '<br>';
 		//	}

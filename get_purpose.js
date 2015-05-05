@@ -1,6 +1,6 @@
 // fieldID to insert into: "purpose_text"
 
-function getPurpose(var url){
+function getPurpose(url){
 	var request = new XMLHttpRequest();
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
@@ -8,12 +8,12 @@ function getPurpose(var url){
 			alert(request.responseText);
 			parseResults(results);
 		}else if(request.readyState == 4 && request.status != 200){
-			document.getElementById("purpose_text").innerHTML = "<p>Error retrieving partner information</p>";
+			return "Error retrieving partner information";
 		}
 	}
 	request.timeout = 5000;
 	request.ontimeout = function() {
-		document.getElementById("purpose_text").innerHTML = "<p>Error :: Time Out</p>";
+		return "Error :: Time Out";
 	}
 	request.open("GET", url, true);
 	request.send();
@@ -22,7 +22,7 @@ function getPurpose(var url){
 		var i;
 		for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
-			document.getElementById("purpose_text").innerHTML = arr[i].purpose;
+			return arr[i].purpose;
 		}
 		
 	}
