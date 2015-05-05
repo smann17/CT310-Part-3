@@ -41,8 +41,10 @@
 		var out = "";
 		var i;
 		//alert(arr.length);
+		//alert(getPurpose(arr[0].url));
 		for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
+			//var string = '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>';
 			out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>' +'<br>';
 		//	if(i % 3 == 0){
 			//	out += '<br>';
