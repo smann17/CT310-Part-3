@@ -23,9 +23,10 @@
 	request.onreadystatechange = function(){
 		if(request.readyState == 4 && request.status == 200){
 			var results = JSON.parse(request.responseText);
+			console.log(results);
 			//alert(request.responseText);
-			parseResults(results);
-		}else if(request.readyState == 4 && request.status != 200){
+			parseFedResults(results);
+		}else if(request.status == 403){
 			document.getElementById("federation_display").innerHTML = "<p>Error retrieving partner sites</p>";
 		}
 	}
@@ -36,7 +37,7 @@
 	request.open("GET", url, true);
 	request.send();
 	
-	function parseResults(arr){
+	function parseFedResults(arr){
 		//
 		var out = "";
 		var i;
@@ -44,11 +45,7 @@
 		//alert(getPurpose(arr[0].url));
 		for(i = 0; i < arr.length; i++){
 			// handle if a single partner site is down
-			//var string = '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>';
 			out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>' +'<br>';
-		//	if(i % 3 == 0){
-			//	out += '<br>';
-		//	}
 		}
 		document.getElementById("federation_display").innerHTML = out;
 	}
