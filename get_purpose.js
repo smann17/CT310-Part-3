@@ -1,6 +1,6 @@
 // fieldID to insert into: "purpose_text"
 
-function getPurpose(vurl){
+function getPurpose(vurl, loginVerif){
 	var prequest = new XMLHttpRequest();
 	newurl = vurl.concat("/purpose.php");
 	//newurl = "purpose.php"
@@ -9,18 +9,20 @@ function getPurpose(vurl){
 		if(prequest.readyState == 4 && prequest.status == 200){
 			var results = JSON.parse(prequest.responseText);
 						//alert(request.responseText);
-			parseResults(results, vurl);
+			parseResults(results, vurl, loginVerif);
 			
 
 		}else if(prequest.readyState == 4 && prequest.status != 200){
 			//alert("Error retrieving partner information");
-		}else if(prequest.status == 404){
-			//alert("It really doesn't work");
-		} else if (prequest.status == 403){
-			$("a[href='" + vurl + "']").attr('title', 'No information available');
+		} else if (prequest.status >= 400){
+			if (loginVerif==1){
+				$("a[href='" + vurl + "']").attr('title', 'No information available');
+			}
+			else {
+				$("a[href='" + vurl + "']").attr('title', null);
+			}
 			$("a[href='" + vurl + "']").css('color', '#500000');
 			$("a[href='" + vurl + "']").attr('href', null);
-
 		} 
 
 	}
@@ -34,15 +36,18 @@ function getPurpose(vurl){
 	
 }
 
-function parseResults(arr, vurl){
-	if (Array.isArray(arr)){
-		$("a[href='" + vurl + "']").attr('title', arr[0].purpose);
+function parseResults(arr, vurl, loginVerif){
+	if (loginVerif==1){
+		if (Array.isArray(arr)){
+			$("a[href='" + vurl + "']").attr('title', arr[0].purpose);
+		}
+		else {
+			$("a[href='" + vurl + "']").attr('title', arr.purpose);
+		}
 	}
 	else {
-		$("a[href='" + vurl + "']").attr('title', arr.purpose);
+		$("a[href='" + vurl + "']").attr('title', null);
 	}
-	console.log(arr.purpose);
-	console.log($("a[href='" + vurl + "']").attr('title', arr.purpose));
 	/*
 	if(Array.isArray(arr)){
 		return arr[0].purpose;

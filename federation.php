@@ -43,10 +43,26 @@
 		var i;
 		//alert(arr.length);
 		//alert(getPurpose(arr[0].url));
-		for(i = 0; i < arr.length; i++){
-			// handle if a single partner site is down
-			out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url) +'">' + arr[i].name + '</a>' +'<br>';
-		}
+		var login = 0;
+		<?php if ($_SESSION['firstName']=="Guest"){?>
+			for(i = 0; i < arr.length; i++){
+				// handle if a single partner site is down
+				out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url, login) +'">' + arr[i].name + '</a>' +'<br>';
+				$("a[href='" + arr[i].url + "']").attr('title', '');
+			}
+
+		<?php } else {?>
+			login = 1;
+			for(i = 0; i < arr.length; i++){
+				// handle if a single partner site is down
+				out += '<a href="' + arr[i].url + '" title = "'+ getPurpose(arr[i].url, login) +'">' + arr[i].name + '</a>' +'<br>';
+			}
+		<?php } ?>
+		
+		
+
+		
+		
 		document.getElementById("federation_display").innerHTML = out;
 	}
 </script>
